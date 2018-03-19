@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import estructura.Hilera;
 import estructura.Jugador;
+import pruebaWindowWilder.VentanaPrincipal;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -11,6 +13,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		VentanaPrincipal  ventana = new VentanaPrincipal();
+		ventana.setVisible(true);
 		boolean flag = true;
 		Scanner s = new Scanner(System.in);
 		int opcion;
