@@ -1,13 +1,14 @@
 package estructura;
 
 public class Enemigo {
+	private String id;
 	private int vida;
 	private String grado;
 	private Enemigo siguiente;
 
-	public Enemigo(int vida,String grado) {
-		this.setVida(vida);
-		this.grado = grado;
+	public Enemigo(int vida,String id) {
+		this.vida = vida;
+		this.id = id;
 		siguiente = null;
 	}
 
@@ -23,7 +24,7 @@ public class Enemigo {
 		return siguiente;
 	}
 
-	public void setSiguiente(Enemigo siguiente) {
+	public void enlazarSiguiente(Enemigo siguiente) {
 		this.siguiente = siguiente;
 	}
 
@@ -33,6 +34,14 @@ public class Enemigo {
 
 	public void setVida(int vida) {
 		this.vida = vida;
+	}
+	
+	public void recibirDisparo(int disparo) {
+		
+	}
+
+	public String getId() {
+		return id;
 	}
 
 }

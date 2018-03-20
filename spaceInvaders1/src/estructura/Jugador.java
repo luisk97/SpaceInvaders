@@ -1,6 +1,7 @@
 package estructura;
 
 public class Jugador {
+	private static Jugador j;
 	private String nombre;
 	private int vida;
 	private int nivel;
@@ -8,8 +9,12 @@ public class Jugador {
 	
 	public Jugador(String nombre) {
 		this.nombre = nombre;
+		vida = 0;
+		nivel = 0;
+		puntos = 0;
 	}
-
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -40,10 +45,6 @@ public class Jugador {
 
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
-	}
-
-	public Jugador() {
-		
 	}
 
 }
