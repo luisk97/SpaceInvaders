@@ -1,8 +1,8 @@
 package estructura;
 
 public class HileraPrincipal {
-	private Hilera cabeza;
-	private Hilera ultimo;
+	private NodoPrincipal cabeza;
+	private NodoPrincipal ultimo;
 	private static HileraPrincipal hil;
 	private int size;
 
@@ -19,28 +19,22 @@ public class HileraPrincipal {
 		return hil;
 	}
 	
-	public Hilera getCabeza() {
+	public NodoPrincipal getCabeza() {
 		return cabeza;
 	}
 
-	public void add(int vel,String tipo) {
+	public void add(int tipo) {
+		InterfaceHilera hilera = new HileraFactory().make(tipo);
 		if(cabeza==null){
-            cabeza = new Hilera(vel);
-            cabeza.setTipo(tipo);
+            cabeza = new NodoPrincipal(hilera);
             ultimo = cabeza;
         }else{
-	        Hilera temp = ultimo;
-	        Hilera nuevo = new Hilera(vel);
+        	NodoPrincipal temp = ultimo;
+        	NodoPrincipal nuevo = new NodoPrincipal(hilera);
 	        temp.enlazarSiguiente(nuevo);
 	        ultimo = nuevo;
-	        ultimo.setTipo(tipo);
         }
-		for(int i = 0; i<5; i++) {
-        	ultimo.add(i+1);
-        	dormir(0);
-        	System.out.println("Enemigo numero "+(i+1));
-        }
-        size++;
+		size++;
 	}
 	
 	public void eliminar(int ind) {
@@ -48,7 +42,7 @@ public class HileraPrincipal {
 			if(ind == 0) {
 				cabeza = cabeza.getSiguiente();
 			}else{
-				Hilera temp = cabeza;
+				NodoPrincipal temp = cabeza;
 				for(int i = 0;i < (ind-1);i++) {
 					temp = temp.getSiguiente();
 				}
@@ -64,18 +58,31 @@ public class HileraPrincipal {
 			System.out.println("Indice no valido");
 		}
 	}
+	
+	public NodoPrincipal obtener(int i) {
+		if(size != 0) {
+			if(i<size) {
+				NodoPrincipal temp = cabeza;
+		        while(0 < i){
+		            temp = temp.getSiguiente();
+		            i--;
+		        }
+		        return temp;
+			}else {
+				System.out.println("Indice no valido");
+			}
+		}else {
+			System.out.println("Hilera vacia");
+		}
+		return null;
+	}
 
-	public int getSize() {
+	public int size() {
 		return size;
 	}
 	
-	public static void dormir(int time) {
-		try {
-			Thread.sleep(time*1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public boolean estaVacia() {
+		return size==0;
 	}
 
 }

@@ -1,43 +1,42 @@
 package estructura;
 
-public class Hilera {
-	private int velocidad;
-	private String tipo;
-	private Enemigo cabeza;
-	private Enemigo ultimo;
+public class Hilera implements InterfaceHilera{
+//	private int velocidad;
+	private  final String tipo = "Basica";
+	private Nodo cabeza;
+	private Nodo ultimo;
 	private int size;
-	private Hilera siguiente;
 	
 
-	public Hilera(int velocidad) {
-		this.velocidad = velocidad;
+	public Hilera() {
 		cabeza = null;
+		ultimo = null;
 		size = 0;
 	}
 
+//
+//	public int getVelocidad() {
+//		return velocidad;
+//	}
+//
+//
+//	public void setVelocidad(int velocidad) {
+//		this.velocidad = velocidad;
+//	}
+//
 
-	public int getVelocidad() {
-		return velocidad;
-	}
-
-
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
-	}
-
-
-	public Enemigo getCabeza() {
+	public Nodo getCabeza() {
 		return cabeza;
 	}
 
 
-	public void add(int i) {
+	public void add(int i,int grado,int vida) {
+		Nodo nuevo = new Nodo(new Enemigo(i,grado,vida));
 		if(cabeza==null) {
-			cabeza = new Enemigo(1,"Enemigo numero "+i);
+			cabeza = nuevo;
 			ultimo = cabeza;
 		}else {
-			Enemigo temp = ultimo;
-			Enemigo nuevo = new Enemigo(1,"Enemigo numero "+i);
+			Nodo temp = ultimo;
 			temp.enlazarSiguiente(nuevo);
 			ultimo = nuevo;
 		}
@@ -49,7 +48,7 @@ public class Hilera {
 			if(ind == 0) {
 				cabeza = cabeza.getSiguiente();
 			}else{
-				Enemigo temp = cabeza;
+				Nodo temp = cabeza;
 				for(int i = 0;i < (ind-1);i++) {
 					temp = temp.getSiguiente();
 				}
@@ -61,6 +60,7 @@ public class Hilera {
 				}
 			}
 			size--;
+			System.out.println("Enemigo eliminado");
 		}else {
 			System.out.println("Indice no valido");
 		}
@@ -68,28 +68,38 @@ public class Hilera {
 	}
 
 
-	public int getSize() {
+	@Override
+	public int size() {
 		return size;
 	}
 
 
-	public Hilera getSiguiente() {
-		return siguiente;
+	@Override
+	public boolean estaVacia() {
+		return size==0;
 	}
 
-
-	public void enlazarSiguiente(Hilera hilera) {
-		siguiente = hilera;
-	}
-
-
+	@Override
 	public String getTipo() {
 		return tipo;
 	}
 
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public Nodo obtener(int i) {
+		if(size != 0) {
+			if(i<size) {
+				Nodo temp = cabeza;
+		        while(0 < i){
+		            temp = temp.getSiguiente();
+		            i--;
+		        }
+		        return temp;
+			}else {
+				System.out.println("Indice no valido");
+			}
+		}else {
+			System.out.println("Hilera vacia");
+		}
+		return null;
 	}
 	
 

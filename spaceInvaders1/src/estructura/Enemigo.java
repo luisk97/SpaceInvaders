@@ -1,46 +1,38 @@
 package estructura;
 
 public class Enemigo {
-	private String id;
+	private int id;
 	private int vida;
 	private String grado;
-	private Enemigo siguiente;
 
-	public Enemigo(int vida,String id) {
-		this.vida = vida;
+	public Enemigo(int id,int grado,int vida) {
 		this.id = id;
-		siguiente = null;
+		this.vida = vida;
+		if(grado == 2) {
+			this.grado = "Jefe";
+		}else {
+			this.grado = "Cabo";
+		}
+		System.out.println("Se creo un "+this.grado+" con id: "+id+" y vida: "+vida);
 	}
 
 	public String getGrado() {
 		return grado;
 	}
-
+	
 	public void setGrado(String grado) {
 		this.grado = grado;
-	}
-
-	public Enemigo getSiguiente() {
-		return siguiente;
-	}
-
-	public void enlazarSiguiente(Enemigo siguiente) {
-		this.siguiente = siguiente;
 	}
 
 	public int getVida() {
 		return vida;
 	}
-
-	public void setVida(int vida) {
-		this.vida = vida;
-	}
 	
-	public void recibirDisparo(int disparo) {
-		
+	public void recibirDisparo() {
+		vida--;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
