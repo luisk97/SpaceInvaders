@@ -42,13 +42,17 @@ public class HileraE implements InterfaceHilera{
 				int nuevoJefe;
 				if(ind == 0) {
 					if(cabeza.getEnemigo().getGrado().equals("Jefe")) {
+						System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
 						cabeza = cabeza.getSiguiente();
 						ultimo.enlazarSiguiente(cabeza);
 						cabeza.enlazarAnterior(ultimo);
 						size--;
-						nuevoJefe = random.nextInt(size);
-						this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
+						if(size != 0) {
+							nuevoJefe = random.nextInt(size);
+							this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
+						}
 					}else {
+						System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
 						cabeza = cabeza.getSiguiente();
 						ultimo.enlazarSiguiente(cabeza);
 						cabeza.enlazarAnterior(ultimo);
@@ -59,6 +63,7 @@ public class HileraE implements InterfaceHilera{
 					for(int indice = 0;indice < ind;indice++){
 						temp = temp.getSiguiente();
 					}
+					System.out.println("Enemigo tipo "+temp.getEnemigo().getGrado()+"con id:"+temp.getEnemigo().getId()+" eliminado");
 					if(temp.getEnemigo().getGrado().equals("Jefe")) {
 						if(ind == size-1) {
 							temp.getAnterior().enlazarSiguiente(cabeza);

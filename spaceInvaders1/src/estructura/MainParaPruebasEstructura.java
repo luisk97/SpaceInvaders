@@ -1,11 +1,6 @@
-package interfaz;
+package estructura;
 
 import java.util.Random;
-
-import estructura.Enemigo;
-import estructura.Facade;
-import estructura.HileraPrincipal;
-import estructura.InterfaceHilera;
 
 public class MainParaPruebasEstructura {
 

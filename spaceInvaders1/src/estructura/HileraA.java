@@ -33,10 +33,12 @@ public class HileraA implements InterfaceHilera{
 			if(ind < size) {
 				if(ind == 0) {
 					if(cabeza.getEnemigo().getGrado().equals("Jefe")) {
+						System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
 						cabeza = null;
 						ultimo = null;
 						size = 0;
 					}else {
+						System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
 						cabeza = cabeza.getSiguiente();
 						size--;
 					}
@@ -45,6 +47,7 @@ public class HileraA implements InterfaceHilera{
 					for(int indice = 0;indice < (ind-1);indice++) {
 						temp = temp.getSiguiente();
 					}
+					System.out.println("Enemigo tipo "+temp.getEnemigo().getGrado()+"con id:"+temp.getEnemigo().getId()+" eliminado");
 					if(temp.getSiguiente().getEnemigo().getGrado().equals("Jefe")) {
 						cabeza = null;
 						ultimo = null;

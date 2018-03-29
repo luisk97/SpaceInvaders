@@ -21,28 +21,52 @@ public class Facade {
 	public Enemigo obtenerEnemigo(InterfaceHilera hilera,int i) {
 		if(hilera instanceof Hilera) {
 			basica = (Hilera)hilera;
-			Enemigo enemigo = basica.obtener(i).getEnemigo();
-			return enemigo;
+			if(!basica.estaVacia()) {
+				Enemigo enemigo = basica.obtener(i).getEnemigo();
+				return enemigo;
+			}else {
+				return null;
+			}
 		}else if(hilera instanceof HileraA) {
 			tipoA = (HileraA)hilera;
-			Enemigo enemigo = tipoA.obtener(i).getEnemigo();
-			return enemigo;
+			if(!tipoA.estaVacia()) {
+				Enemigo enemigo = tipoA.obtener(i).getEnemigo();
+				return enemigo;
+			}else {
+				return null;
+			}
 		}else if(hilera instanceof HileraB) {
 			tipoB = (HileraB)hilera;
-			Enemigo enemigo = tipoB.obtener(i).getEnemigo();
-			return enemigo;
+			if(!tipoB.estaVacia()) {
+				Enemigo enemigo = tipoB.obtener(i).getEnemigo();
+				return enemigo;
+			}else {
+				return null;
+			}
 		}else if(hilera instanceof HileraC) {
 			tipoC = (HileraC)hilera;
-			Enemigo enemigo = tipoC.obtener(i).getEnemigo();
-			return enemigo;
+			if(!tipoC.estaVacia()) {
+				Enemigo enemigo = tipoC.obtener(i).getEnemigo();
+				return enemigo;
+			}else {
+				return null;
+			}
 		}else if(hilera instanceof HileraD) {
 			tipoD = (HileraD)hilera;
-			Enemigo enemigo = tipoD.obtener(i).getEnemigo();
-			return enemigo;
+			if(!tipoD.estaVacia()) {
+				Enemigo enemigo = tipoD.obtener(i).getEnemigo();
+				return enemigo;
+			}else {
+				return null;
+			}
 		}else if(hilera instanceof HileraE) {
 			tipoE = (HileraE)hilera;
-			Enemigo enemigo = tipoE.obtener(i).getEnemigo();
-			return enemigo;
+			if(!tipoE.estaVacia()) {
+				Enemigo enemigo = tipoE.obtener(i).getEnemigo();
+				return enemigo;
+			}else {
+				return null;
+			}
 		}else {
 			System.out.println("Parametro no valido");
 		}

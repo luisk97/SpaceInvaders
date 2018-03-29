@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import estructura.InterfaceHilera;
+
 public class Bala {
 	private static final int LARGO = 30;
 	private static final int ANCHO = 20;
@@ -29,7 +31,7 @@ public class Bala {
 			label.setVisible(false);			
 		}
 		if(collision()) {
-			juego.getEnemigo().recibirDiparo();
+//			juego.getEnemigo().recibirDiparo();
 			juego.getNave().getBalas().remove(this);
 			juego.getNave().aumentarPuntos(1);
 			juego.remove(label);
@@ -42,7 +44,24 @@ public class Bala {
 	}
 	
 	public boolean collision() {
-		return juego.getEnemigo().getBounds().intersects(getBounds());
+		if(!juego.getListaEnemigos().isEmpty()) {
+			for(int i = 0; i<juego.getListaEnemigos().size();i++) {
+				NaveEnemiga temp = juego.getListaEnemigos().get(i);
+				if (temp.getBounds().intersects(getBounds())) {
+					temp.recibirDiparo();
+//					if(temp.getVida() <= 0) {
+//						juego.getListaEnemigos().remove(i);
+//					}
+					juego.getNave().getBalas().remove(this);
+					juego.getNave().aumentarPuntos(1);
+					juego.remove(label);
+					label.setVisible(false);
+				}
+			}
+//		}else if(juego.getEnemigo().getBounds().intersects(getBounds())){
+//			return true;
+		}
+		return false;
 	}
 	
 	public void paint() {

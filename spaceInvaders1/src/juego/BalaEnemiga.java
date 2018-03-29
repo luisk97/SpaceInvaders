@@ -23,15 +23,17 @@ public class BalaEnemiga {
 	
 	public void move() {
 		if(y+ya > juego.getHeight() - LARGO) {
-			juego.getEnemigo().getBalas().remove(this);
+//			juego.getEnemigo().getBalas().remove(this);
 			juego.remove(label);
 			label.setVisible(false);			
 		}
 		if(collision()) {
-			juego.getNave().recibirDiparo();
-			juego.getEnemigo().getBalas().remove(this);
+//			juego.getEnemigo().getBalas().remove(this);
 			juego.remove(label);
 			label.setVisible(false);
+			juego.getNave().recibirDiparo();
+			y = 0;
+			ya = 0;
 		}
 			y+=ya;
 			label.setBounds(x, y, ANCHO, LARGO);

@@ -35,33 +35,40 @@ public class HileraC implements InterfaceHilera{
 			if(ind < size) {
 				int nuevoJefe;
 				if(ind == 0) {
-					if(cabeza.getEnemigo().getGrado().equals("Jefe")) {
+//					if(cabeza.getEnemigo().getGrado().equals("Jefe")) {
+//						System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
+//						cabeza = cabeza.getSiguiente();
+//						ultimo.enlazarSiguiente(cabeza);
+//						size--;
+//						if(size != 0) {
+//							nuevoJefe = random.nextInt(size);
+//							this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
+//						}
+//					}else {
+						System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
 						cabeza = cabeza.getSiguiente();
 						ultimo.enlazarSiguiente(cabeza);
 						size--;
-						nuevoJefe = random.nextInt(size);
-						this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
-					}else {
-						cabeza = cabeza.getSiguiente();
-						ultimo.enlazarSiguiente(cabeza);
-						size--;
-					}
+//					}
 				}else{
 					NodoC temp = cabeza;
 					for(int indice = 0;indice < (ind-1);indice++){
 						temp = temp.getSiguiente();
 					}
-					if(temp.getSiguiente().getEnemigo().getGrado().equals("Jefe")) {
-						if(ind == size-1) {
-							temp.enlazarSiguiente(cabeza);
-							ultimo = temp;
-						}else {
-						 temp.enlazarSiguiente(temp.getSiguiente().getSiguiente());
-						}
-						size--;
-						nuevoJefe = random.nextInt(size);
-						this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
-					}else {
+					System.out.println("Enemigo tipo "+temp.getSiguiente().getEnemigo().getGrado()+"con id:"+temp.getSiguiente().getEnemigo().getId()+" eliminado");
+//					if(temp.getSiguiente().getEnemigo().getGrado().equals("Jefe")) {
+//						if(ind == size-1) {
+//							temp.enlazarSiguiente(cabeza);
+//							ultimo = temp;
+//						}else {
+//						 temp.enlazarSiguiente(temp.getSiguiente().getSiguiente());
+//						}
+//						size--;
+//						if(size != 0) {
+//							nuevoJefe = random.nextInt(size);
+//							this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
+//						}
+//					}else {
 						if(ind == size-1) {
 							temp.enlazarSiguiente(null);
 							ultimo = temp;
@@ -69,7 +76,7 @@ public class HileraC implements InterfaceHilera{
 						 temp.enlazarSiguiente(temp.getSiguiente().getSiguiente());
 						}
 						size--;
-					}
+//					}
 				}
 				System.out.println("Enemigo eliminado");
 			}else {

@@ -6,10 +6,19 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import estructura.Enemigo;
+import estructura.Facade;
+import estructura.Hilera;
+import estructura.HileraA;
+import estructura.HileraB;
+import estructura.HileraC;
+
 public class NaveEnemiga implements Nave{
 	private static final int LARGO = 90;
 	private static final int ANCHO = 80;
 	private int vida = 5;
+	private String grado;
+	private int id;
 	private int x = 50;
 	private int y = 0;
 	private int xa = 2;
@@ -19,16 +28,28 @@ public class NaveEnemiga implements Nave{
 	int flag = 0;
 	private ArrayList<BalaEnemiga> balas;
 	private Random disparoAleatorio = new Random();
-	private JLabel label = new JLabel(new ImageIcon(
-			"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/naveEnemiga0.png"));
+	private JLabel label;
 	
-	public NaveEnemiga(Juego juego) {
+	public NaveEnemiga(Juego juego ,int x,int grado,int id) {
+		this.id = id;
+		this.x = x;
 		balas = new ArrayList<BalaEnemiga>();
-		this.juego = juego; 
+		this.juego = juego;
+		if(grado == 2) {
+			label = new JLabel(new ImageIcon(
+					"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/jefe.png"));
+			this.grado = "Jefe";
+			System.out.println("Se creo un jefe grafico");
+		}else {
+			label = new JLabel(new ImageIcon(
+					"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/cabo.png"));
+			this.grado = "Cabo";
+			System.out.println("Se creo un cabo grafico");
+		}
 	}
-	
+
 	public void move() {
-		flag = disparoAleatorio.nextInt(100);
+		flag = disparoAleatorio.nextInt(500);
 		if(x + xa < 0) {
 			xa = -xa;
 			y+=ya;
@@ -56,16 +77,103 @@ public class NaveEnemiga implements Nave{
 	}
 	
 	public boolean collision() {
-		return juego.getNave().getBounds().intersects(getBounds());
+		if(juego.getNave().getBounds().intersects(getBounds())) {
+			juego.getNave().setVida(0);
+			return true;
+		}
+		return false;
 	}
 	
 	public void disparar() {
 		balas.add(new BalaEnemiga(juego,x,y));
 	}
 	
+	// Aqui esta la clave pero no se bien como hacerlo xd
 	public void recibirDiparo() {
 		vida--;
-		System.out.println("Vida enemigo"+vida);
+		if(vida <= 0) {
+			if(!balas.isEmpty()){
+				for(int i = 0; i<balas.size(); i++){
+					balas.get(i).label.setVisible(false);
+				}
+				balas.clear();
+			}
+			if(juego.getHilPrin().getCabeza().getHilera() instanceof Hilera) {
+				System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
+				label.setVisible(false);
+				juego.remove(label);
+				juego.getListaEnemigos().remove(this);
+				juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraA) {
+				if(!juego.getListaEnemigos().isEmpty()){	
+					if(grado == "Jefe") {
+						for(int i = 0; i<juego.getListaEnemigos().size(); i++){
+							juego.getListaEnemigos().get(i).label.setVisible(false);
+						}
+						juego.getListaEnemigos().clear();
+						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+						System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
+						System.out.println("Como es TipoA se elimino toda la hilera");
+					}else {
+						System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
+						label.setVisible(false);
+						juego.remove(label);
+						juego.getListaEnemigos().remove(this);
+						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+					}
+				}
+			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraB) {
+				if(!juego.getListaEnemigos().isEmpty()){
+					if(grado == "Jefe") {
+						for(int i = 0; i<juego.getListaEnemigos().size(); i++){
+							juego.getListaEnemigos().get(i).label.setVisible(false);
+						}
+						juego.getListaEnemigos().clear();
+						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+						System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
+						System.out.println("Como es TipoB se elimino toda la hilera");
+					}else {
+						System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
+						label.setVisible(false);
+						juego.remove(label);
+						juego.getListaEnemigos().remove(this);
+						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+					}
+				}
+			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraC) {
+				if(!juego.getListaEnemigos().isEmpty()){
+					if(grado == "Jefe") {
+						int nuevoJefe;
+						Facade fachada = new Facade();
+						Enemigo temp;
+						label.setVisible(false);
+						juego.remove(label);
+						juego.getListaEnemigos().remove(this);
+						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+						if(juego.getListaEnemigos().size() != 0) {
+							nuevoJefe = disparoAleatorio.nextInt(juego.getListaEnemigos().size());
+							juego.getListaEnemigos().get(nuevoJefe).grado = "Jefe";
+							juego.getListaEnemigos().get(nuevoJefe).label.setVisible(false);
+							juego.getListaEnemigos().get(nuevoJefe).label = new JLabel(new ImageIcon(
+										"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/jefe.png"));
+							if(juego.getHilPrin().getCabeza().getHilera().size() != 0) {
+								temp = fachada.obtenerEnemigo(juego.getHilPrin().getCabeza().getHilera(), nuevoJefe);
+								temp.setGrado(grado);
+							}
+							System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
+							System.out.println("Como es TipoC se eligio otro Jefe");
+						}
+					}else {
+						System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
+						label.setVisible(false);
+						juego.remove(label);
+						juego.getListaEnemigos().remove(this);
+						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+					}
+				}
+			}
+		}
+		System.out.println("Vida enemigo "+vida);
 	}
 	
 	public void paint() {
@@ -127,6 +235,15 @@ public class NaveEnemiga implements Nave{
 
 	public void setYa(int ya) {
 		this.ya = ya;
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public ArrayList<BalaEnemiga> getBalas() {

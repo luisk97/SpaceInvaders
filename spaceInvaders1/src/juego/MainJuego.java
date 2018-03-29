@@ -18,8 +18,12 @@ public class MainJuego {
 		while(true) {
 			enPartida = ventana.getJuego().isEnCurso();
 			if(enPartida) {
-				ventana.getJuego().move();
+				if(hilPrin.estaVacia()){
+					ventana.getJuego().iniciarEnemigos();
+				}
 				ventana.getJuego().repaint();
+				ventana.getJuego().move();
+//				ventana.getJuego().repaint();
 				ventana.setLblVida(ventana.getJuego().getNave().getVida());
 				ventana.setLblNivel(ventana.getJuego().getNave().getNivel());
 				ventana.setLblPuntos(ventana.getJuego().getNave().getPuntos());
@@ -28,12 +32,6 @@ public class MainJuego {
 					ventana.getJuego().setEnCurso(false);
 					ventana.getPanelInicio().setVisible(true);
 					ventana.getJuego().setVisible(false);
-				}
-				if(hilPrin.estaVacia()){
-					for(int i = 0; i < 6; i++) {
-						tipo = randomHilera.nextInt(6);
-						hilPrin.add(tipo);
-					}
 				}
 			}else {
 				

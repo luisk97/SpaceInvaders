@@ -59,10 +59,10 @@ public class VentanaJuego extends JFrame{
  				juego.getNave().setX(350);
  				juego.getNave().setPuntos(0);
  				juego.getNave().setNivel(1);
- 				juego.getEnemigo().setVida(5);
- 				juego.getEnemigo().setY(0);
- 				juego.getEnemigo().setX(0);
- 				juego.getEnemigo().setYa(0);
+// 				juego.getEnemigo().setVida(5);
+// 				juego.getEnemigo().setY(0);
+// 				juego.getEnemigo().setX(0);
+// 				juego.getEnemigo().setYa(0);
  				
  			}
  		});

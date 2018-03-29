@@ -44,8 +44,10 @@ public class HileraD implements InterfaceHilera{
 						cabeza = cabeza.getSiguiente();
 						ultimo.enlazarSiguiente(cabeza);
 						size--;
-						nuevoJefe = random.nextInt(size);
-						this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
+						if(size != 0) {
+							nuevoJefe = random.nextInt(size);
+							this.obtener(nuevoJefe).getEnemigo().setGrado("Jefe");
+						}
 					}else {
 						cabeza = cabeza.getSiguiente();
 						ultimo.enlazarSiguiente(cabeza);

@@ -46,12 +46,14 @@ public class Hilera implements InterfaceHilera{
 	public void eliminar(int ind) {
 		if(ind < size) {
 			if(ind == 0) {
+				System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
 				cabeza = cabeza.getSiguiente();
 			}else{
 				Nodo temp = cabeza;
 				for(int i = 0;i < (ind-1);i++) {
 					temp = temp.getSiguiente();
 				}
+				System.out.println("Enemigo tipo "+temp.getEnemigo().getGrado()+"con id:"+temp.getEnemigo().getId()+" eliminado");
 				if(ind == size-1) {
 					temp.enlazarSiguiente(null);
 					ultimo = temp;
