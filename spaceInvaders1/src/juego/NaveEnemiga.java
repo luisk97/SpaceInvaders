@@ -27,6 +27,7 @@ public class NaveEnemiga implements Nave{
 	private int vida = 0;
 	private String grado;
 	private int id;
+	private int idInvers;
 	private int x = 50;
 	private int y = 0;
 	private int xa;
@@ -46,9 +47,10 @@ public class NaveEnemiga implements Nave{
 	 * @param id
 	 * @param vida
 	 */
-	public NaveEnemiga(Juego juego ,int x,int grado,int id,int vida) {
+	public NaveEnemiga(Juego juego ,int x,int grado,int id,int idInvers,int vida) {
 		this.id = id;
 		this.x = x;
+		this.idInvers = idInvers;
 		balas = new ArrayList<BalaEnemiga>();
 		this.juego = juego;
 		this.vida = vida;
@@ -82,42 +84,83 @@ public class NaveEnemiga implements Nave{
 	 */
 	public void move() {
 		flag = random.nextInt(500);
-		if(juego.getNave().getNivel() > 2 && juego.getNave().getNivel() < 5) {
-			if(x + xa < 0) {
-				xa = 3;
-				y+=ya;
+		if(juego.getHilPrin().getCabeza().getHilera().getTipo() == "ClaseE") {
+			if(juego.getNave().getNivel() > 2 && juego.getNave().getNivel() < 5) {
+				if(x + xa < 0) {
+					xa = 3;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO) {
+					xa = -3;
+					y+=ya;
+				}
+			}else if(juego.getNave().getNivel() > 4 && juego.getNave().getNivel() < 6){
+				if(x + xa < 0) {
+					xa = 4;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO) {
+					xa = -4;
+					y+=ya;
+				}
+			}else if(juego.getNave().getNivel() > 5) {
+				if(x + xa < 0) {
+					xa = 5;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO) {
+					xa = -5;
+					y+=ya;
+				}
+				flag = random.nextInt(300);
+			}else {
+				if(x + xa < 0) {
+					xa = 2;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO) {
+					xa = -2;
+					y+=ya;
+				}
 			}
-			if(x+xa > juego.getWidth() - ANCHO) {
-				xa = -3;
-				y+=ya;
-			}
-		}else if(juego.getNave().getNivel() > 4 && juego.getNave().getNivel() < 6){
-			if(x + xa < 0) {
-				xa = 4;
-				y+=ya;
-			}
-			if(x+xa > juego.getWidth() - ANCHO) {
-				xa = -4;
-				y+=ya;
-			}
-		}else if(juego.getNave().getNivel() > 5) {
-			if(x + xa < 0) {
-				xa = 5;
-				y+=ya;
-			}
-			if(x+xa > juego.getWidth() - ANCHO) {
-				xa = -5;
-				y+=ya;
-			}
-			flag = random.nextInt(300);
 		}else {
-			if(x + xa < 0) {
-				xa = 2;
-				y+=ya;
-			}
-			if(x+xa > juego.getWidth() - ANCHO) {
-				xa = -2;
-				y+=ya;
+			if(juego.getNave().getNivel() > 2 && juego.getNave().getNivel() < 5) {
+				if(x + xa < 0+(ANCHO*id)) {
+					xa = 3;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO-ANCHO*(idInvers)) {
+					xa = -3;
+					y+=ya;
+				}
+			}else if(juego.getNave().getNivel() > 4 && juego.getNave().getNivel() < 6){
+				if(x + xa < 0+(ANCHO*id)) {
+					xa = 4;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO-ANCHO*(idInvers)) {
+					xa = -4;
+					y+=ya;
+				}
+			}else if(juego.getNave().getNivel() > 5) {
+				if(x + xa < 0+(ANCHO*id)) {
+					xa = 5;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO-ANCHO*(idInvers)) {
+					xa = -5;
+					y+=ya;
+				}
+				flag = random.nextInt(300);
+			}else {
+				if(x + xa < 0+(ANCHO*id)) {
+					xa = 2;
+					y+=ya;
+				}
+				if(x+xa > juego.getWidth() - ANCHO-ANCHO*(idInvers)) {
+					xa = -2;
+					y+=ya;
+				}
 			}
 		}
 		if(flag == 2)
@@ -208,6 +251,15 @@ public class NaveEnemiga implements Nave{
 				juego.remove(label);
 				juego.getListaEnemigos().remove(this);
 				juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+				/*
+				 * esta validacion nos centra la hilera en caso de que algun enemigo muera
+				 */
+				if(!juego.getListaEnemigos().isEmpty()){
+					int posicionHead = juego.getListaEnemigos().get(0).x;
+					for(int i = 1; i<juego.getListaEnemigos().size(); i++){
+						juego.getListaEnemigos().get(i).setX(posicionHead+i*80);
+					}
+				}//wpejngvvvvvvvijrujnfpiwnviwnir
 			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraA) {
 				if(!juego.getListaEnemigos().isEmpty()){	
 					if(grado == "Jefe") {
@@ -226,6 +278,15 @@ public class NaveEnemiga implements Nave{
 						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
 					}
 				}
+				/*
+				 * esta validacion nos centra la hilera en caso de que algun enemigo muera
+				 */
+				if(!juego.getListaEnemigos().isEmpty()){
+					int posicionHead = juego.getListaEnemigos().get(0).x;
+					for(int i = 1; i<juego.getListaEnemigos().size(); i++){
+						juego.getListaEnemigos().get(i).setX(posicionHead+i*80);
+					}
+				}
 			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraB) {
 				if(!juego.getListaEnemigos().isEmpty()){
 					if(grado == "Jefe") {
@@ -242,6 +303,15 @@ public class NaveEnemiga implements Nave{
 						juego.remove(label);
 						juego.getListaEnemigos().remove(this);
 						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
+					}
+				}
+				/*
+				 * esta validacion nos centra la hilera en caso de que algun enemigo muera
+				 */
+				if(!juego.getListaEnemigos().isEmpty()){
+					int posicionHead = juego.getListaEnemigos().get(0).x;
+					for(int i = 1; i<juego.getListaEnemigos().size(); i++){
+						juego.getListaEnemigos().get(i).setX(posicionHead+i*80);
 					}
 				}
 			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraC) {
@@ -276,6 +346,15 @@ public class NaveEnemiga implements Nave{
 						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
 					}
 				}
+				/*
+				 * esta validacion nos centra la hilera en caso de que algun enemigo muera
+				 */
+				if(!juego.getListaEnemigos().isEmpty()){
+					int posicionHead = juego.getListaEnemigos().get(0).x;
+					for(int i = 1; i<juego.getListaEnemigos().size(); i++){
+						juego.getListaEnemigos().get(i).setX(posicionHead+i*80);
+					}
+				}
 			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraD) {
 				if(!juego.getListaEnemigos().isEmpty()){
 					if(grado == "Jefe") {
@@ -306,6 +385,15 @@ public class NaveEnemiga implements Nave{
 						juego.getHilPrin().getCabeza().getHilera().eliminar(id);
 					}
 				}
+				/*
+				 * esta validacion nos centra la hilera en caso de que algun enemigo muera
+				 */
+				if(!juego.getListaEnemigos().isEmpty()){
+					int posicionHead = juego.getListaEnemigos().get(0).x;
+					for(int i = 1; i<juego.getListaEnemigos().size(); i++){
+						juego.getListaEnemigos().get(i).setX(posicionHead+i*80);
+					}
+				}
 			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraE) {
 				System.out.println("Enemigo grafico tipo "+grado+" con id:"+id+" eliminado");
 				label.setVisible(false);
@@ -313,6 +401,16 @@ public class NaveEnemiga implements Nave{
 				juego.getListaEnemigos().remove(this);
 				juego.getHilPrin().getCabeza().getHilera().eliminar(id);
 			}
+			/*
+			 * esta validacion nos centra la hilera en caso de que algun enemigo muera
+			 */
+//			if(!juego.getListaEnemigos().isEmpty()){
+//				int posicionHead = juego.getListaEnemigos().get(0).x;
+//				for(int i = 1; i<juego.getListaEnemigos().size(); i++){
+//					juego.getListaEnemigos().get(i).setX(posicionHead+i*80);
+//				}
+//			}
+			//wpejngvvvvvvvijrujnfpiwnviwnir
 		}
 		System.out.println("Vida enemigo "+vida);
 	}
@@ -360,9 +458,9 @@ public class NaveEnemiga implements Nave{
 //		return x;
 //	}
 
-//	public void setX(int x) {
-//		this.x = x;
-//	}
+	public void setX(int x) {
+		this.x = x;
+	}
 
 //	public int getY() {
 //		return y;
@@ -405,6 +503,15 @@ public class NaveEnemiga implements Nave{
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	/**
+	 * metodo que nos permite asignar un id inverso a la nave el cual nos funciona para
+	 * el manejo de la nave a nivel grafico
+	 * @param idInvers
+	 */
+	public void setIdInvers(int idInvers) {
+		this.idInvers = idInvers;
 	}
 	
 	/**

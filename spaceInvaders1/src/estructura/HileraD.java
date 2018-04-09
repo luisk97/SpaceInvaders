@@ -50,6 +50,7 @@ public class HileraD implements InterfaceHilera{
 
 	/**
 	 * Este metodo permitira eliminar el nodo que se encuentre en la posicion indicada
+	 * revisando si el nodo contiene a un enemigo de tipo jefe cambia el atributo a otra posicion
 	 */
 	@Override
 	public void eliminar(int ind) {

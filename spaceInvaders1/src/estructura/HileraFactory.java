@@ -2,23 +2,41 @@ package estructura;
 
 import java.util.Random;
 
+/**
+ * Esta clase es la implementacion de patron de diseño Factory con el cual
+ * solo debemos indicar el tipo de hilera que deseamos y nos debuelve una 
+ * instancia de la hilera requerida sin tener que hacer todas esas validaciones
+ * en la clase cliente
+ * @author luisk
+ *
+ */
 public class HileraFactory {
-	Random random = new Random();
-	int enem;
+	private Random random = new Random();
+	private int enem;
+	private int cantEnem = 7;
 
+	/**
+	 * Mediante este metodo nos ahorramos tener que hacer todas estas validaciones
+	 * en la clase cliente, solo tenemos que indicar mediante un parametro numerico
+	 * la clase de hilera que deseamos y este metodo se encarga de construir la
+	 * hilera con la cantidad de enemigos predefinida de la manera que se requiere
+	 * segun sea la clase de hilera
+	 * @param tipo
+	 * @return InterfaceHilera
+	 */
 	public InterfaceHilera make(int tipo) {
 		if(tipo == 0) {
 			Hilera basic = new Hilera();
 			System.out.println("Se creo una Hilera Basic");
-			for(int i = 0; i<7; i++) {
+			for(int i = 0; i<cantEnem; i++) {
 				basic.add(i,1,3);
 			}
 			return basic;
 		}else if(tipo == 1) {
 			HileraA tipoA = new HileraA();
 			System.out.println("Se creo una Hilera TipoA");
-			enem = random.nextInt(7);
-			for(int i = 0; i < 7; i++) {
+			enem = random.nextInt(cantEnem);
+			for(int i = 0; i < cantEnem; i++) {
 				if(i == enem) {
 					tipoA.add(i,2,7);
 				}else {
@@ -29,8 +47,8 @@ public class HileraFactory {
 		}else if(tipo == 2) {
 			HileraB tipoB = new HileraB();
 			System.out.println("Se creo una Hilera TipoB");
-			enem = random.nextInt(7);
-			for(int i = 0; i < 7; i++) {
+			enem = random.nextInt(cantEnem);
+			for(int i = 0; i < cantEnem; i++) {
 				if(i == enem) {
 					tipoB.add(i,2,7);
 				}else {
@@ -41,8 +59,8 @@ public class HileraFactory {
 		}else if(tipo == 3) {
 			HileraC tipoC = new HileraC();
 			System.out.println("Se creo una Hilera TipoC");
-			enem = random.nextInt(7);
-			for(int i = 0; i < 7; i++) {
+			enem = random.nextInt(cantEnem);
+			for(int i = 0; i < cantEnem; i++) {
 				if(i == enem) {
 					tipoC.add(i,2,7);
 				}else {
@@ -53,16 +71,16 @@ public class HileraFactory {
 		}else if(tipo == 4) {
 			HileraD tipoD = new HileraD();
 			System.out.println("Se creo una Hilera TipoD");
-			enem = random.nextInt(7);
-			int res;
-			for(int i = 0; i < 7; i++) {
-				res = random.nextInt(6);
-				if(res == 0)
-					res=1;
+			enem = random.nextInt(cantEnem);
+			int resistencia;
+			for(int i = 0; i < cantEnem; i++) {
+				resistencia = random.nextInt(6);
+				if(resistencia == 0)
+					resistencia=1;
 				if(i == enem) {
 					tipoD.add(i,2,7);
 				}else {
-					tipoD.add(i,1,res);
+					tipoD.add(i,1,resistencia);
 				}
 			}
 			tipoD.burbuja();

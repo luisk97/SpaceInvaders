@@ -1,10 +1,10 @@
 package interfaz;
 
-import java.util.Scanner;
-
-import estructura.Hilera;
-import estructura.HileraPrincipal;
-import estructura.Jugador;
+//import java.util.Scanner;
+//
+//import estructura.Hilera;
+//import estructura.HileraPrincipal;
+//import estructura.Jugador;
 public class Main {
 
 	public static void main(String[] args) {

@@ -77,8 +77,9 @@ public class Juego extends JPanel{
 //		}
 //		enemigo.move();
 		if(!listaEnemigos.isEmpty()) {
-			for(int i = 0; i<listaEnemigos.size();i++) {
+			for(int i = 0,iInvers = listaEnemigos.size()-1; i<listaEnemigos.size();i++,iInvers--) {
 				listaEnemigos.get(i).setId(i);
+				listaEnemigos.get(i).setIdInvers(iInvers);
 				listaEnemigos.get(i).move();
 			}
 		}else {
@@ -89,16 +90,17 @@ public class Juego extends JPanel{
 					InterfaceHilera hileraactual=hilPrin.getCabeza().getHilera();
 					hileraActual = hileraactual.getTipo();
 					Enemigo temp;
-					for(int i = 0; i<hileraactual.size(); i++) {
+					for(int i = 0,iInvers = hileraactual.size()-1; i<hileraactual.size(); i++,iInvers--) {
 						temp = fachada.obtenerEnemigo(hileraactual, i);
 						if(temp.getGrado() == "Jefe") {
-							listaEnemigos.add(new NaveEnemiga(this,80*i,2,i,7));
+							listaEnemigos.add(new NaveEnemiga(this,80*i,2,i,iInvers,7));
 						}else {
-							listaEnemigos.add(new NaveEnemiga(this,80*i,1,i,temp.getVida()));
+							listaEnemigos.add(new NaveEnemiga(this,80*i,1,i,iInvers,temp.getVida()));
 						}
 					}
-					for(int i = 0; i<listaEnemigos.size();i++) {
+					for(int i = 0,iInvers = listaEnemigos.size()-1; i<listaEnemigos.size();i++,iInvers--) {
 						listaEnemigos.get(i).setId(i);
+						listaEnemigos.get(i).setIdInvers(iInvers);
 						listaEnemigos.get(i).move();
 					}
 				}
@@ -204,12 +206,12 @@ public class Juego extends JPanel{
 		InterfaceHilera hileraactual=hilPrin.getCabeza().getHilera();
 		hileraActual = hileraactual.getTipo();
 		Enemigo temp;
-		for(int i = 0; i<7; i++) {
+		for(int i = 0,iInvers = 6; i<7; i++,iInvers--) {
 			temp = fachada.obtenerEnemigo(hileraactual, i);
 			if(temp.getGrado() == "Jefe") {
-				listaEnemigos.add(new NaveEnemiga(this,80*i,2,i,7));
+				listaEnemigos.add(new NaveEnemiga(this,80*i,2,i,iInvers,7));
 			}else {
-				listaEnemigos.add(new NaveEnemiga(this,80*i,1,i,temp.getVida()));
+				listaEnemigos.add(new NaveEnemiga(this,80*i,1,i,iInvers,temp.getVida()));
 			}
 		}
 		
