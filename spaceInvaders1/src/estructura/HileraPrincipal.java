@@ -76,6 +76,12 @@ public class HileraPrincipal {
 		}
 		return null;
 	}
+	
+	public void clear() {
+		cabeza = null;
+		ultimo = null;
+		size = 0;
+	}
 
 	public int size() {
 		return size;

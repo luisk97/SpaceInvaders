@@ -1,5 +1,11 @@
 package estructura;
 
+/**
+ * Esta clase es la implementacion del patron de diseño facade la cual nos permitira 
+ * mediante un solo metodo interactuar con diferentes clases
+ * @author luisk
+ *
+ */
 public class Facade {
 	private Hilera basica;
 	private HileraA tipoA;
@@ -9,6 +15,9 @@ public class Facade {
 	private HileraE tipoE;
 	
 
+	/**
+	 * Constructor de la clase
+	 */
 	public Facade() {
 		basica = null;
 		tipoA = null;
@@ -18,6 +27,15 @@ public class Facade {
 		tipoE = null;
 	}
 	
+	/**
+	 * Este metodo permitira obtener mediante un indice el enemigo que se encuentre 
+	 * en la posicion requerida de la hilera que se paso como parametro, validando
+	 * primero el tipo de hilera para utilizar el metodo correspondiente a la clase
+	 * de hilera a la acual pertenece la instancia  
+	 * @param hilera
+	 * @param i
+	 * @return
+	 */
 	public Enemigo obtenerEnemigo(InterfaceHilera hilera,int i) {
 		if(hilera instanceof Hilera) {
 			basica = (Hilera)hilera;

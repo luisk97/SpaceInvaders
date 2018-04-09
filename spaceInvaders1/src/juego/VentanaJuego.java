@@ -11,6 +11,14 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
 
+/**
+ * Esta clase sera la ventana del juego en la cual se visualizaran los 
+ * diferentes paneles que nos mostraran por ejemplo el menu de pausa, 
+ * el de inicio, y el del juego como tal asi como diferentes botones 
+ * y etiquetas
+ * @author luisk
+ *
+ */
 public class VentanaJuego extends JFrame{
 	
 	private Juego juego;
@@ -25,7 +33,8 @@ public class VentanaJuego extends JFrame{
 	private JLabel lblVida;
 
 	/**
-	 * Create the frame.
+	 * Create the frame. En este metodo se inicializara la ventana asi como
+	 * todo lo que contenga la ventana (Paneles, botones, labels) 
 	 * @throws InterruptedException 
 	 */
 	private void initialize() throws InterruptedException {
@@ -34,6 +43,9 @@ public class VentanaJuego extends JFrame{
 		setTitle("Space Invaders");
 		getContentPane().setLayout(null);
  		
+		/*
+		 * boton que cerrara la ventana
+		 */
  		JButton btnSalir = new JButton("Salir");
  		btnSalir.setBounds(780, 10, 89, 23);
  		getContentPane().add(btnSalir);
@@ -48,9 +60,21 @@ public class VentanaJuego extends JFrame{
  		getContentPane().add(panelInicio);
  		panelInicio.setLayout(null);
  		
+ 		/*
+ 		 * boton que se encargara de dar inicio a una nueva partida
+ 		 */
  		JButton btnStart = new JButton(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/btnPlay.png"));
  		btnStart.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
+ 				for(int i = 0; i<juego.getListaEnemigos().size(); i++) {
+ 					for(int ind = 0; ind< juego.getListaEnemigos().get(i).getBalas().size(); ind++) {
+ 						juego.getListaEnemigos().get(i).getBalas().get(ind).label.setVisible(false);
+ 					}
+ 					juego.getListaEnemigos().get(i).getBalas().clear();
+ 					juego.getListaEnemigos().get(i).getLabel().setVisible(false);
+ 				}
+ 				juego.getListaEnemigos().clear();
+ 				juego.getHilPrin().clear();
  				juego.setVisible(true);
  				juego.setEnCurso(true);
  				panelInicio.setVisible(false);
@@ -81,6 +105,9 @@ public class VentanaJuego extends JFrame{
  		panelPausa.setLayout(null);
  		panelPausa.setVisible(false);
  		
+ 		/*
+ 		 * boton que nos permitira cerrar el menu de pausa y regresar a la partida actual
+ 		 */
  		JButton btnContinuar = new JButton(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/btnContinuar.png"));
  		btnContinuar.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
@@ -100,9 +127,22 @@ public class VentanaJuego extends JFrame{
  		lblPausa.setBounds(102, 30, 279, 96);
  		panelPausa.add(lblPausa);
  		
+ 		/*
+ 		 * boton que cerrara el menu de puasa y nos devolvera al inicio del juego perdiendo
+ 		 * asi la partida actual
+ 		 */
  		JButton btnInicio = new JButton(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/botonInicio.png"));
  		btnInicio.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
+ 				for(int i = 0; i<juego.getListaEnemigos().size(); i++) {
+ 					for(int ind = 0; ind< juego.getListaEnemigos().get(i).getBalas().size(); ind++) {
+ 						juego.getListaEnemigos().get(i).getBalas().get(ind).label.setVisible(false);
+ 					}
+ 					juego.getListaEnemigos().get(i).getBalas().clear();
+ 					juego.getListaEnemigos().get(i).getLabel().setVisible(false);
+ 				}
+ 				juego.getListaEnemigos().clear();
+ 				juego.getHilPrin().clear();
  				juego.setVisible(false);
  				juego.setEnCurso(false);
  				panelInicio.setVisible(true);
@@ -126,9 +166,17 @@ public class VentanaJuego extends JFrame{
 		//		lblNewLabel.setBounds(434, 220, 46, 14);
 		//		panel.add(lblNewLabel);
 		//		panel.setVisible(false);
+ 		
+ 		/*
+ 		 * Panel del juego
+ 		 */
  		juego = new Juego();
 		juego.setBounds(0, 42, 884, 499);
 		getContentPane().add(juego);
+		
+		/*
+		 * boton que permite detener la partida y mostrar un menu de pausa
+		 */
 		btnPausa = new JButton("Pausa");
 		btnPausa.setBounds(672, 10, 89, 23);
 		getContentPane().add(btnPausa);
@@ -169,7 +217,7 @@ public class VentanaJuego extends JFrame{
 		lblSiguienteHilera = new JLabel("Siguiente:");
 		lblSiguienteHilera.setForeground(new Color(255, 255, 255));
 		lblSiguienteHilera.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSiguienteHilera.setBounds(330, 10, 113, 23);
+		lblSiguienteHilera.setBounds(330, 10, 146, 23);
 		getContentPane().add(lblSiguienteHilera);
 		
 		lblPuntos = new JLabel("Puntos:");
@@ -185,46 +233,82 @@ public class VentanaJuego extends JFrame{
 		setVisible(true);
 	}
 
+	/**
+	 * Metodo que retornara el panel con la imagen de inicio y boton de start
+	 * @return JPanel panelInicio
+	 */
 	public JPanel getPanelInicio() {
 		return panelInicio;
 	}
 
-	public void setPanelInicio(JPanel panelInicio) {
-		this.panelInicio = panelInicio;
-	}
+//	public void setPanelInicio(JPanel panelInicio) {
+//		this.panelInicio = panelInicio;
+//	}
 
+	/**
+	 * Metodo que nos retornara el Panel del juego
+	 * @return Juego juego
+	 */
 	public Juego getJuego() {
 		return juego;
 	}
 
+	/**
+	 * Metodo que permitira modificar la label lblSiguienteHilera
+	 * @param siguienteHilera
+	 */
 	public void setLblSiguienteHilera(String siguienteHilera) {
 		lblSiguienteHilera.setText("Siguiente:"+siguienteHilera);
 	}
 
+	/**
+	 * Metodo que permitira modificar la label lblHileraActual
+	 * @param hileraActual
+	 */
 	public void setLblHileraActual(String hileraActual) {
 		lblHileraActual.setText("Hilera Actual:"+hileraActual);
 	}
 
+	/**
+	 * Metodo que permitira modificar la label lblPuntos
+	 * @param puntos
+	 */
 	public void setLblPuntos(int puntos) {
 		lblPuntos.setText("Puntos:"+puntos);
 	}
 
+	/**
+	 * Metodo que permitira modificar la label lblNivel
+	 * @param nivel
+	 */
 	public void setLblNivel(int nivel) {
 		lblNivel.setText("Nivel:"+nivel);
 	}
 
+	/**
+	 * Metodo que permitira modificar la label lblVida
+	 * @param vida
+	 */
 	public void setLblVida(int vida) {
 		lblVida.setText("Vida:"+vida);
 	}
 	
+	/**
+	 * metodo que nos retornara el boton de pausa
+	 * @return JButton btnPausa
+	 */
 	public JButton getBtnPausa() {
 		return btnPausa;
 	}
 
-	public void setBtnPausa(JButton btnPausa) {
-		this.btnPausa = btnPausa;
-	}
-
+//	public void setBtnPausa(JButton btnPausa) {
+//		this.btnPausa = btnPausa;
+//	}
+	
+	/**
+	 * Metodo constructor de la clase
+	 * @throws InterruptedException
+	 */
 	public VentanaJuego() throws InterruptedException{
 		initialize();
 	}

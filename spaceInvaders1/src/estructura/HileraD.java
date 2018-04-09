@@ -2,6 +2,13 @@ package estructura;
 
 import java.util.Random;
 
+/**
+ * Esta clase corresponde a la quinta clase de hilera la cual cambia la posicion
+ *  del Jefe si este muere y se mantiene ordenada de mayor a menor segun la vida 
+ *  del enemigo contenido en cada nodo
+ * @author luisk
+ *
+ */
 public class HileraD implements InterfaceHilera{
 	private final String tipo = "ClaseD";
 	private NodoD cabeza;
@@ -10,6 +17,9 @@ public class HileraD implements InterfaceHilera{
 	private  Random random = new Random();
 	private boolean flag;
 
+	/**
+	 * Metodo constructor
+	 */
 	public HileraD() {
 		cabeza = null;
 		ultimo = null;
@@ -17,6 +27,10 @@ public class HileraD implements InterfaceHilera{
 		flag = true;
 	}
 
+	/**
+	 * Permite añadir un nuevo nodo con un enemigo con las caracteristicas 
+	 * que se pasaron como parametro a la hilera
+	 */
 	@Override
 	public void add(int i,int grado,int vida) {
 		NodoD nuevo = new NodoD(new Enemigo(i,grado,vida));
@@ -34,6 +48,9 @@ public class HileraD implements InterfaceHilera{
 		
 	}
 
+	/**
+	 * Este metodo permitira eliminar el nodo que se encuentre en la posicion indicada
+	 */
 	@Override
 	public void eliminar(int ind) {
 		if(size > 0) {
@@ -87,7 +104,11 @@ public class HileraD implements InterfaceHilera{
 		}
 	}
 	
-	
+	/**
+	 * este metodo realizara un ordenamiento de los nodos de acuerdo al valor
+	 * que tenga el atributo vida del enemigo contenido dentro del nodo 
+	 * ordenandolos de mayor a menor
+	 */
 	public void burbuja() {
 		NodoD aux;
 		NodoD temp;
@@ -136,6 +157,12 @@ public class HileraD implements InterfaceHilera{
 		return tipo;
 	}
 
+	/**
+	 * Permitira obtener el nodo que se encuentre en la posicion que se 
+     * paso como parametro
+	 * @param i
+	 * @return NodoD
+	 */
 	public  NodoD obtener(int i) {
 		if(size != 0) {
 			if(i<size) {

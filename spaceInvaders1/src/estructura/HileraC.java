@@ -1,18 +1,31 @@
 package estructura;
 
-import java.util.Random;
+//import java.util.Random;
 
+/**
+ * Esta clase corresponde a la cuarta clase de hilera la cual varia 
+ * aleatoriamente la posicion del Jefe si este muere
+ * @author luisk
+ *
+ */
 public class HileraC implements InterfaceHilera{
 	private final String tipo= "ClaseC";
 	private NodoC cabeza;
 	private NodoC ultimo;
 	private int size;
-	private  Random random = new Random();
+//	private  Random random = new Random();
 
+	/**
+	 * Metodo constructor
+	 */
 	public HileraC() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Permite añadir un nuevo nodo con un enemigo con las caracteristicas 
+	 * que se pasaron como parametro a la hilera
+	 */
 	@Override
 	public void add(int i,int grado,int vida) {
 		NodoC nuevo = new NodoC(new Enemigo(i,grado,vida));
@@ -29,11 +42,17 @@ public class HileraC implements InterfaceHilera{
 		
 	}
 
+	/**
+	 * Este metodo permitira eliminar el nodo que se encuentre en la posicion indicada
+	 * la validacion para cambiar el Jefe a otra posicion ya no se realiza aqui si no
+	 * que fue mas combeniente efectuarla en la clase NaveEnemiga para que el jefe quedara
+	 * en la misma posicion que en el arrayList de las naves enemigas graficas 
+	 */
 	@Override
 	public void eliminar(int ind) {
 		if(size > 0) {
 			if(ind < size) {
-				int nuevoJefe;
+//				int nuevoJefe;
 				if(ind == 0) {
 //					if(cabeza.getEnemigo().getGrado().equals("Jefe")) {
 //						System.out.println("Enemigo tipo "+cabeza.getEnemigo().getGrado()+"con id:"+cabeza.getEnemigo().getId()+" eliminado");
@@ -102,6 +121,12 @@ public class HileraC implements InterfaceHilera{
 		return tipo;
 	}
 
+	/**
+	 * Permitira obtener el nodo que se encuentre en la posicion que se 
+     * paso como parametro
+	 * @param i
+	 * @return NodoC
+	 */
 	public  NodoC obtener(int i) {
 		if(size != 0) {
 			if(i<size) {

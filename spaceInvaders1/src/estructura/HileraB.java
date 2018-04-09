@@ -1,17 +1,29 @@
 package estructura;
 
+/**
+ * Esta clase corresponde a la tercer clase de hilera la cual varia dinamica y 
+ * aleatoriamente la posicion del Jefe
+ * @author luisk
+ *
+ */
 public class HileraB implements InterfaceHilera{
 	private final String tipo = "ClaseB";
 	private NodoB cabeza;
 	private NodoB ultimo;
 	private int size;
 
+	/**
+	 * Metodo constructor
+	 */
 	public HileraB() {
 		cabeza = null;
 		ultimo = null;
 		size = 0;
 	}
 
+	/**
+	 * Permitira añadir nuevos nodos a la lista enlazada(hilera)
+	 */
 	@Override
 	public void add(int i,int grado,int vida) {
 		NodoB nuevo = new NodoB(new Enemigo(i,grado,vida));
@@ -28,6 +40,11 @@ public class HileraB implements InterfaceHilera{
 		
 	}
 
+	/**
+	 * Este metodo permitira eliminar el nodo que se encuentre en la posicion indicada
+	 * validando primero si el enemigo contenido dentro del nodo es de tipo jefe y si 
+	 * es asi se elimina todos los nodos contenidos en la hilera
+	 */
 	@Override
 	public void eliminar(int ind) {
 		if(size > 0) {
@@ -91,6 +108,12 @@ public class HileraB implements InterfaceHilera{
 		return tipo;
 	}
 
+/**
+ * Permitira obtener el nodo que se encuentre en la posicion que se 
+ * paso como parametro
+ * @param i
+ * @return NodoB
+ */
 	public NodoB obtener(int i) {
 		if(size != 0) {
 			if(i<size) {

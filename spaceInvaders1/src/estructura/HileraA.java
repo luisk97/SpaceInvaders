@@ -1,17 +1,30 @@
 package estructura;
 
+/**
+ * Esta clase corresponde al segundo tipo de hilera a la cual se le 
+ * eliminan todos los nodos si se elimina alguno que contenga un enemigo 
+ * de tipo Jefe
+ * @author luisk
+ *
+ */
 public class HileraA implements InterfaceHilera{
 	private final String tipo = "ClaseA";
 	private NodoA cabeza;
 	private NodoA ultimo;
 	private int size;
 
+	/**
+	 * Metodo constructor
+	 */
 	public HileraA() {
 		cabeza = null;
 		ultimo = null;
 		size = 0;
 	}
 
+	/**
+	 * Permitira añadir nuevos nodos a la lista enlazada(hilera)
+	 */
 	@Override
 	public void add(int i,int grado,int vida) {
 		NodoA nuevo = new NodoA(new Enemigo(i,grado,vida));
@@ -27,6 +40,11 @@ public class HileraA implements InterfaceHilera{
 		
 	}
 
+	/**
+	 * Este metodo permitira eliminar el nodo que se encuentre en la posicion indicada
+	 * validando primero si el enemigo contenido dentro del nodo es de tipo jefe y si 
+	 * es asi se elimina todos los nodos contenidos en la hilera
+	 */
 	@Override
 	public void eliminar(int ind) {
 		if(size > 0) {
@@ -87,6 +105,12 @@ public class HileraA implements InterfaceHilera{
 		return tipo;
 	}
 
+	/**
+	 * Permitira obtener el nodo que se encuentre en la posicion que se 
+	 * paso como parametro
+	 * @param i
+	 * @return NodoA
+	 */
 	public  NodoA obtener(int i) {
 		if(size != 0) {
 			if(i<size) {

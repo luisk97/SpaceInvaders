@@ -2,6 +2,12 @@ package estructura;
 
 import java.util.Random;
 
+/**
+ * Esta clase corresponde a la quinta clase de hilera la cual debe girar como un
+ * reloj en la pantalla
+ * @author luisk
+ *
+ */
 public class HileraE implements InterfaceHilera{
 	private final String tipo = "ClaseE";
 	private NodoE cabeza;
@@ -9,10 +15,17 @@ public class HileraE implements InterfaceHilera{
 	private int size;
 	private  Random random = new Random();
 
+	/**
+	 * Metodo constructor
+	 */
 	public HileraE() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Permite añadir un nuevo nodo con un enemigo con las caracteristicas 
+	 * que se pasaron como parametro a la hilera
+	 */
 	@Override
 	public void add(int i,int grado,int vida) {
 		NodoE nuevo = new NodoE(new Enemigo(i,grado,vida));
@@ -35,6 +48,9 @@ public class HileraE implements InterfaceHilera{
 		
 	}
 
+	/**
+	 * Este metodo permitira eliminar el nodo que se encuentre en la posicion indicada
+	 */
 	@Override
 	public void eliminar(int ind) {
 		if(size > 0) {
@@ -112,6 +128,12 @@ public class HileraE implements InterfaceHilera{
 		return tipo;
 	}
 
+	/**
+	 * Permitira obtener el nodo que se encuentre en la posicion que se 
+     * paso como parametro
+	 * @param i
+	 * @return NodoE
+	 */
 	public  NodoE obtener(int i) {
 		if(size != 0) {
 			if(i<size) {

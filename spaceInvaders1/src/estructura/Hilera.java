@@ -1,5 +1,10 @@
 package estructura;
 
+/**
+ * Esta clase es la hilera basica la cual contiene unicamente enemigos de tipo cabo
+ * @author luisk
+ *
+ */
 public class Hilera implements InterfaceHilera{
 //	private int velocidad;
 	private  final String tipo = "Basica";
@@ -8,6 +13,9 @@ public class Hilera implements InterfaceHilera{
 	private int size;
 	
 
+	/**
+	 * metodo constructor
+	 */
 	public Hilera() {
 		cabeza = null;
 		ultimo = null;
@@ -25,11 +33,18 @@ public class Hilera implements InterfaceHilera{
 //	}
 //
 
+	/**
+	 * retornara el primer elemento de la hilera
+	 * @return Nodo cabeza
+	 */
 	public Nodo getCabeza() {
 		return cabeza;
 	}
 
-
+	/**
+	 * Permitira añadir nuevos nodos a la lista enlazada(hilera)
+	 */
+	@Override
 	public void add(int i,int grado,int vida) {
 		Nodo nuevo = new Nodo(new Enemigo(i,grado,vida));
 		if(cabeza==null) {
@@ -43,6 +58,10 @@ public class Hilera implements InterfaceHilera{
 		size++;
 	}
 	
+	/**
+	 * Este metodo permitira eliminar el nodo que se encuentre en la posicion indicada
+	 */
+	@Override
 	public void eliminar(int ind) {
 		if(ind < size) {
 			if(ind == 0) {
@@ -86,6 +105,11 @@ public class Hilera implements InterfaceHilera{
 		return tipo;
 	}
 
+	/**
+	 * Este metodo retornara el nodo que se encuentre en la posicion solicitada
+	 * @param i
+	 * @return Nodo
+	 */
 	public Nodo obtener(int i) {
 		if(size != 0) {
 			if(i<size) {
