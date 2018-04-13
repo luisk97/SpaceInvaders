@@ -20,8 +20,7 @@ public class Bala {
 	private int y;
 	private int ya = -6;
 	private Juego juego;
-	JLabel label = new JLabel(new ImageIcon(
-			"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/bala.png"));
+	JLabel label = new JLabel(new ImageIcon("src/imagenes/bala.png"));
 	
 	/**
 	 * metodo constructor

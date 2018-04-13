@@ -63,12 +63,12 @@ public class VentanaJuego extends JFrame{
  		/*
  		 * boton que se encargara de dar inicio a una nueva partida
  		 */
- 		JButton btnStart = new JButton(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/btnPlay.png"));
+ 		JButton btnStart = new JButton(new ImageIcon("src/imagenes/btnPlay.png"));
  		btnStart.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
  				for(int i = 0; i<juego.getListaEnemigos().size(); i++) {
  					for(int ind = 0; ind< juego.getListaEnemigos().get(i).getBalas().size(); ind++) {
- 						juego.getListaEnemigos().get(i).getBalas().get(ind).label.setVisible(false);
+ 						juego.getListaEnemigos().get(i).getBalas().get(ind).getLabel().setVisible(false);
  					}
  					juego.getListaEnemigos().get(i).getBalas().clear();
  					juego.getListaEnemigos().get(i).getLabel().setVisible(false);
@@ -93,7 +93,7 @@ public class VentanaJuego extends JFrame{
  		btnStart.setBounds(308, 216, 245, 100);
  		panelInicio.add(btnStart);
  		
- 		JLabel lblNewLabel = new JLabel(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/imagenFondo5.jpg"));
+ 		JLabel lblNewLabel = new JLabel(new ImageIcon("src/imagenes/imagenFondo5.jpg"));
  		lblNewLabel.setBounds(0, 0, 884, 541);
  		panelInicio.add(lblNewLabel);
  		
@@ -108,7 +108,7 @@ public class VentanaJuego extends JFrame{
  		/*
  		 * boton que nos permitira cerrar el menu de pausa y regresar a la partida actual
  		 */
- 		JButton btnContinuar = new JButton(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/btnContinuar.png"));
+ 		JButton btnContinuar = new JButton(new ImageIcon("src/imagenes/btnContinuar.png"));
  		btnContinuar.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
  				juego.setVisible(true);
@@ -123,7 +123,7 @@ public class VentanaJuego extends JFrame{
  		btnContinuar.setBounds(155, 259, 159, 47);
  		panelPausa.add(btnContinuar);
  		
- 		JLabel lblPausa = new JLabel(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/pausa.png"));
+ 		JLabel lblPausa = new JLabel(new ImageIcon("src/imagenes/pausa.png"));
  		lblPausa.setBounds(102, 30, 279, 96);
  		panelPausa.add(lblPausa);
  		
@@ -131,12 +131,12 @@ public class VentanaJuego extends JFrame{
  		 * boton que cerrara el menu de puasa y nos devolvera al inicio del juego perdiendo
  		 * asi la partida actual
  		 */
- 		JButton btnInicio = new JButton(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/botonInicio.png"));
+ 		JButton btnInicio = new JButton(new ImageIcon("src/imagenes/botonInicio.png"));
  		btnInicio.addActionListener(new ActionListener() {
  			public void actionPerformed(ActionEvent e) {
  				for(int i = 0; i<juego.getListaEnemigos().size(); i++) {
  					for(int ind = 0; ind< juego.getListaEnemigos().get(i).getBalas().size(); ind++) {
- 						juego.getListaEnemigos().get(i).getBalas().get(ind).label.setVisible(false);
+ 						juego.getListaEnemigos().get(i).getBalas().get(ind).getLabel().setVisible(false);
  					}
  					juego.getListaEnemigos().get(i).getBalas().clear();
  					juego.getListaEnemigos().get(i).getLabel().setVisible(false);
@@ -154,7 +154,7 @@ public class VentanaJuego extends JFrame{
  		btnInicio.setBounds(177, 183, 116, 41);
  		panelPausa.add(btnInicio);
  		
- 		JLabel lblFondoPausa = new JLabel(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/fondoPausaDef.png"));
+ 		JLabel lblFondoPausa = new JLabel(new ImageIcon("src/imagenes/fondoPausaDef.png"));
  		lblFondoPausa.setBounds(0, 0, 469, 358);
  		panelPausa.add(lblFondoPausa);
 		//		juego = new Juego();
@@ -226,7 +226,7 @@ public class VentanaJuego extends JFrame{
 		lblPuntos.setBounds(470, 10, 199, 23);
 		getContentPane().add(lblPuntos);
 		
-		lblFondoTotal = new JLabel(new ImageIcon("C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/fondoTotal.jpg"));
+		lblFondoTotal = new JLabel(new ImageIcon("src/imagenes/fondoTotal.jpg"));
 		lblFondoTotal.setBounds(0, 0, 884, 541);
 		getContentPane().add(lblFondoTotal);
 		juego.setVisible(false);

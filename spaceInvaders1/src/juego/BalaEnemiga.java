@@ -16,9 +16,12 @@ public class BalaEnemiga {
 	private int y = 0;
 	private int ya = 4;
 	private Juego juego;
-	JLabel label = new JLabel(new ImageIcon(
-			"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/lazer.png"));
+	private JLabel label = new JLabel(new ImageIcon("src/imagenes/lazer.png"));
 	
+	public JLabel getLabel() {
+		return label;
+	}
+
 	/**
 	 * metodo constructor
 	 * @param juego

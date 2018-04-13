@@ -22,10 +22,8 @@ public class NaveJugador implements Nave{
 	private ArrayList<Bala> balas;
 	private Juego juego;
 	private int nivel;
-	private JLabel label = new JLabel(new ImageIcon(
-			"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/jugador.png"));
-	private JLabel labelFondo = new JLabel(new ImageIcon(
-			"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/Cuasar-Agujero-Negro.png"));
+	private JLabel label = new JLabel(new ImageIcon("src/imagenes/jugador.png"));
+	private JLabel labelFondo = new JLabel(new ImageIcon("src/imagenes/Cuasar-Agujero-Negro.png"));
 	
 	/**
 	 * Constructor de la clase
@@ -93,6 +91,23 @@ public class NaveJugador implements Nave{
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			disparar();
 			return;
+		}
+	}
+	
+	/**
+	 * Metodo que se llama desde la clase HiloSocket el cual recibe la un string que es a orden 
+	 * que se recibio en el socket desde el dispositivo movil
+	 * @param orden
+	 */
+	public void recibeOrden(String orden) {
+		if(orden.equals("Derecha")) {
+			xa = 4;
+		}else if(orden.equals("Izquierda")) {
+			xa = -4;
+		}else if(orden.equals("Disparar")) {
+			disparar();
+		}else {
+			
 		}
 	}
 	

@@ -55,13 +55,11 @@ public class NaveEnemiga implements Nave{
 		this.juego = juego;
 		this.vida = vida;
 		if(grado == 2) {
-			label = new JLabel(new ImageIcon(
-					"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/jefe.png"));
+			label = new JLabel(new ImageIcon("src/imagenes/jefe.png"));
 			this.grado = "Jefe";
 			System.out.println("Se creo un jefe grafico");
 		}else {
-			label = new JLabel(new ImageIcon(
-					"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/cabo.png"));
+			label = new JLabel(new ImageIcon("src/imagenes/cabo.png"));
 			this.grado = "Cabo";
 			System.out.println("Se creo un cabo grafico");
 		}
@@ -190,15 +188,13 @@ public class NaveEnemiga implements Nave{
 						tempNav.setGrado("Cabo");
 						tempNav.setVida(3);
 						tempNav.getLabel().setVisible(false);
-						tempNav.setLabel(new JLabel(new ImageIcon(
-						"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/cabo.png")));
+						tempNav.setLabel(new JLabel(new ImageIcon("src/imagenes/cabo.png")));
 					}
 				}
 				juego.getListaEnemigos().get(nuevoJefe).setGrado("Jefe");
 				juego.getListaEnemigos().get(nuevoJefe).setVida(7);
 				juego.getListaEnemigos().get(nuevoJefe).getLabel().setVisible(false);
-				juego.getListaEnemigos().get(nuevoJefe).setLabel(new JLabel(new ImageIcon(
-						"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/jefe.png")));
+				juego.getListaEnemigos().get(nuevoJefe).setLabel(new JLabel(new ImageIcon("src/imagenes/jefe.png")));
 				Enemigo temp;
 				Facade fachada = new Facade();
 				if(juego.getHilPrin().getCabeza().getHilera().size() != 0) {
@@ -241,7 +237,7 @@ public class NaveEnemiga implements Nave{
 		if(vida <= 0) {
 			if(!balas.isEmpty()){
 				for(int i = 0; i<balas.size(); i++){
-					balas.get(i).label.setVisible(false);
+					balas.get(i).getLabel().setVisible(false);
 				}
 				balas.clear();
 			}
@@ -264,6 +260,9 @@ public class NaveEnemiga implements Nave{
 				if(!juego.getListaEnemigos().isEmpty()){	
 					if(grado == "Jefe") {
 						for(int i = 0; i<juego.getListaEnemigos().size(); i++){
+							for(int ind = 0; ind < juego.getListaEnemigos().get(i).balas.size();ind++) {
+								juego.getListaEnemigos().get(i).balas.get(ind).getLabel().setVisible(false);
+							}
 							juego.getListaEnemigos().get(i).label.setVisible(false);
 						}
 						juego.getListaEnemigos().clear();
@@ -329,8 +328,7 @@ public class NaveEnemiga implements Nave{
 							juego.getListaEnemigos().get(nuevoJefe).grado = "Jefe";
 							juego.getListaEnemigos().get(nuevoJefe).vida = 7;
 							juego.getListaEnemigos().get(nuevoJefe).label.setVisible(false);
-							juego.getListaEnemigos().get(nuevoJefe).label = new JLabel(new ImageIcon(
-										"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/jefe.png"));
+							juego.getListaEnemigos().get(nuevoJefe).label = new JLabel(new ImageIcon("src/imagenes/jefe.png"));
 							if(juego.getHilPrin().getCabeza().getHilera().size() != 0) {
 								temp = fachada.obtenerEnemigo(juego.getHilPrin().getCabeza().getHilera(), nuevoJefe);
 								temp.setGrado(grado);
@@ -368,8 +366,7 @@ public class NaveEnemiga implements Nave{
 							juego.getListaEnemigos().get(id).grado = "Jefe";
 							juego.getListaEnemigos().get(id).vida = 7;
 							juego.getListaEnemigos().get(id).label.setVisible(false);
-							juego.getListaEnemigos().get(id).label = new JLabel(new ImageIcon(
-										"C:/Users/luisk.PC-LUISK/Documents/tec/lll Semestre/Datos l/Proyecto#1/Imagenes/jefe.png"));
+							juego.getListaEnemigos().get(id).label = new JLabel(new ImageIcon("src/imagenes/jefe.png"));
 							if(juego.getHilPrin().getCabeza().getHilera().size() != 0) {
 								temp = fachada.obtenerEnemigo(juego.getHilPrin().getCabeza().getHilera(), id);
 								temp.setGrado(grado);
