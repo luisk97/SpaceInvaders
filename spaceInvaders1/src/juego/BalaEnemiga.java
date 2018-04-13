@@ -1,4 +1,5 @@
 package juego;
+import java.applet.AudioClip;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ public class BalaEnemiga {
 	private int y = 0;
 	private int ya = 4;
 	private Juego juego;
+	private AudioClip sonido = java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/golpe.wav"));
 	private JLabel label = new JLabel(new ImageIcon("src/imagenes/lazer.png"));
 	
 	public JLabel getLabel() {
@@ -62,7 +64,12 @@ public class BalaEnemiga {
 	 * @return boolean true o false
 	 */
 	public boolean collision() {
-		return juego.getNave().getBounds().intersects(getBounds());
+		if(juego.getNave().getBounds().intersects(getBounds())) {
+			sonido.play();
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	/**

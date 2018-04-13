@@ -1,4 +1,5 @@
 package juego;
+import java.applet.AudioClip;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class NaveJugador implements Nave{
 	private ArrayList<Bala> balas;
 	private Juego juego;
 	private int nivel;
+	private AudioClip sonido = java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/explosionJugador.wav"));
+	private AudioClip sonidoDisparo = java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/disparo.wav"));
 	private JLabel label = new JLabel(new ImageIcon("src/imagenes/jugador.png"));
 	private JLabel labelFondo = new JLabel(new ImageIcon("src/imagenes/Cuasar-Agujero-Negro.png"));
 	
@@ -47,8 +50,10 @@ public class NaveJugador implements Nave{
 			for(int i = 0; i<balas.size();i++)
 				balas.get(i).move();
 		}
-		if(vida == 0)
+		if(vida == 0) {
+			sonido.play();
 			juego.gameOver();
+		}
 		
 	}
 	
@@ -90,6 +95,7 @@ public class NaveJugador implements Nave{
 			xa = 4;
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			disparar();
+			sonidoDisparo.play();
 			return;
 		}
 	}

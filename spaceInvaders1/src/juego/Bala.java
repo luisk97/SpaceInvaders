@@ -1,5 +1,6 @@
 package juego;
 
+import java.applet.AudioClip;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ public class Bala {
 	private int y;
 	private int ya = -6;
 	private Juego juego;
+	private AudioClip sonido = java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/golpe.wav"));
 	JLabel label = new JLabel(new ImageIcon("src/imagenes/bala.png"));
 	
 	/**
@@ -66,6 +68,7 @@ public class Bala {
 				NaveEnemiga temp = juego.getListaEnemigos().get(i);
 				if (temp.getBounds().intersects(getBounds())) {
 					temp.recibirDiparo();
+					sonido.play();
 //					if(temp.getVida() <= 0) {
 //						juego.getListaEnemigos().remove(i);
 //					}

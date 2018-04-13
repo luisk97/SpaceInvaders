@@ -1,5 +1,6 @@
 package juego;
 
+import java.applet.AudioClip;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
@@ -37,6 +38,8 @@ public class NaveEnemiga implements Nave{
 	int flag = 0;
 	private ArrayList<BalaEnemiga> balas;
 	private Random random = new Random();
+	private AudioClip sonido = java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/explocionEnemigo.wav"));
+	private AudioClip sonidolazer = java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/lazer.wav"));
 	private JLabel label;
 
 	/**
@@ -223,6 +226,8 @@ public class NaveEnemiga implements Nave{
 	 */
 	public void disparar() {
 		balas.add(new BalaEnemiga(juego,x,y));
+		sonidolazer.play();
+		
 	}
 	
 	// Aqui se decide bastante
@@ -398,6 +403,7 @@ public class NaveEnemiga implements Nave{
 				juego.getListaEnemigos().remove(this);
 				juego.getHilPrin().getCabeza().getHilera().eliminar(id);
 			}
+			sonido.play();
 			/*
 			 * esta validacion nos centra la hilera en caso de que algun enemigo muera
 			 */
