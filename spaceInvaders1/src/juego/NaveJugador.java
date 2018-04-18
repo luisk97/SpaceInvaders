@@ -95,7 +95,6 @@ public class NaveJugador implements Nave{
 			xa = 4;
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			disparar();
-			sonidoDisparo.play();
 			return;
 		}
 	}
@@ -105,15 +104,15 @@ public class NaveJugador implements Nave{
 	 * que se recibio en el socket desde el dispositivo movil
 	 * @param orden
 	 */
-	public void recibeOrden(String orden) {
-		if(orden.equals("Derecha")) {
+	public void recibeOrden(String orden){
+		if(orden.equals("Derecha")){
 			xa = 4;
-		}else if(orden.equals("Izquierda")) {
+		}else if(orden.equals("Izquierda")){
 			xa = -4;
-		}else if(orden.equals("Disparar")) {
+		}else if(orden.equals("Centro")) {
+			xa = 0;
+		}else if(orden.equals("Disparar")){
 			disparar();
-		}else {
-			
 		}
 	}
 	
@@ -132,8 +131,10 @@ public class NaveJugador implements Nave{
 	 * a la nave del jugador
 	 */
 	private void disparar() {
-		if(balas.isEmpty())
+		if(balas.isEmpty()) {
 			balas.add(new Bala(juego,x));
+			sonidoDisparo.play();
+		}
 	}
 
 	/**

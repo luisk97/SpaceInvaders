@@ -42,9 +42,10 @@ public class HiloSocket implements Runnable{
 				String mensaje = (String)entrada.readObject();
 				System.out.println("Mensaje: "+mensaje);
 				ventana.getJuego().getNave().recibeOrden(mensaje);
-//				ObjectOutputStream resp = new ObjectOutputStream(clienteNuevo.getOutputStream());
-//				resp.writeObject("Hola cliente");
-//				System.out.println("Mensaje enviado");
+				ObjectOutputStream resp = new ObjectOutputStream(clienteNuevo.getOutputStream());
+				resp.writeObject("vida:"+ventana.getJuego().getNave().getVida()+"   puntos:"+ventana.getJuego().getNave().getPuntos()+
+						"   nivel:"+ventana.getJuego().getNave().getNivel()+"   hilera:"+ventana.getJuego().getHileraActual()+"   siguiente:"+ventana.getJuego().getHileraSiguiente());
+				System.out.println("Mensaje enviado");
 				clienteNuevo.close();
 //			 	servidor.close();
 			}
