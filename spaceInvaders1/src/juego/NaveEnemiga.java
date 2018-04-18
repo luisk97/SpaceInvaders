@@ -31,7 +31,7 @@ public class NaveEnemiga implements Nave{
 	private int idInvers;
 	private int x = 50;
 	private int y = 0;
-	private int xa;
+	private float xa;
 	private int ya = 20;
 	private Juego juego;
 //	JLabel lblNewLabel = new JLabel("Vida Enemigo: "+ vida);
@@ -71,7 +71,7 @@ public class NaveEnemiga implements Nave{
 		}else if(juego.getNave().getNivel() > 4 && juego.getNave().getNivel() < 6){
 			xa = 4;
 		}else if(juego.getNave().getNivel() > 5) {
-			xa = 5;
+			xa = juego.getNave().getNivel();
 		}else {
 			xa = 2;
 		}
@@ -106,11 +106,11 @@ public class NaveEnemiga implements Nave{
 				}
 			}else if(juego.getNave().getNivel() > 5) {
 				if(x + xa < 0) {
-					xa = 5;
+					xa = juego.getNave().getNivel();
 					y+=ya;
 				}
 				if(x+xa > juego.getWidth() - ANCHO) {
-					xa = -5;
+					xa = -juego.getNave().getNivel();
 					y+=ya;
 				}
 				flag = random.nextInt(300);
@@ -145,11 +145,11 @@ public class NaveEnemiga implements Nave{
 				}
 			}else if(juego.getNave().getNivel() > 5) {
 				if(x + xa < 0+(ANCHO*id)) {
-					xa = 5;
+					xa = juego.getNave().getNivel();
 					y+=ya;
 				}
 				if(x+xa > juego.getWidth() - ANCHO-ANCHO*(idInvers)) {
-					xa = -5;
+					xa = -juego.getNave().getNivel();
 					y+=ya;
 				}
 				flag = random.nextInt(300);
@@ -260,7 +260,7 @@ public class NaveEnemiga implements Nave{
 					for(int i = 1; i<juego.getListaEnemigos().size(); i++){
 						juego.getListaEnemigos().get(i).setX(posicionHead+i*80);
 					}
-				}//wpejngvvvvvvvijrujnfpiwnviwnir
+				}
 			}else if(juego.getHilPrin().getCabeza().getHilera() instanceof HileraA) {
 				if(!juego.getListaEnemigos().isEmpty()){	
 					if(grado == "Jefe") {

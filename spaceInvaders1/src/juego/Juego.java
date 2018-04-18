@@ -43,7 +43,7 @@ public class Juego extends JPanel{
 	private ArrayList<NaveEnemiga> listaEnemigos = new ArrayList<NaveEnemiga>();
 	private Facade fachada = new Facade();
 	private Random random = new Random();
-	private int nivelMaximo = 6;
+	private int nivelMaximo = 8;
 	
 	
 	/**
